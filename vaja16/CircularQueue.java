@@ -80,33 +80,24 @@ public class CircularQueue {
 	 * ( 0 je na primeru zgolj oznaka za element, ki ni del vrste )
 	 */
 	public static void pokaziTabeloZVrsto() {
-		int rp = 0;
-		int gl = 0;
-
 		System.out.print("[");
-		for(int i = 0; i < N; i++)
-			System.out.print(vrsta[i] + ",");
-		System.out.print("]");
-		System.out.println();
-		for(int j = 0; j < N; j++) {
-			if(vrsta[j] == vrsta[rep])
-				rp = j + 1;
-			else if(vrsta[j] == vrsta[glava])
-				gl = j + 1;
+		for(int i = 0; i < N; i++) {
+			System.out.print(vrsta[i] + (i != N - 1 ? "," : ""));
 		}
-
-		glava++;
+		System.out.println("]");
 
 		System.out.print(" ");
 		for(int k = 0; k < N; k++) {
-			if(k == rep)
+			if(k == rep - 1) {
 				System.out.print("R ");
-			else if(k == glava)
+			} else if(k == glava) {
 				System.out.print("G ");
-			else if(vrsta[k] > 10) {
-				System.out.print("   ");
 			} else {
-				System.out.println("  ");
+				System.out.print("  ");
+			}
+
+			if(vrsta[k] > 10) {
+				System.out.print(" ");
 			}
 		}
 	}

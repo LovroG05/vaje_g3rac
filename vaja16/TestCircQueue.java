@@ -1,9 +1,6 @@
-
 /**
- * Write a description of class TestCircQueue here.
- *
- * @author (your name)
- * @version (a version number or a date)
+ * @author Žan Piletič, Jurij Fortuna
+ * vir: https://github.com/LovroG05/vaje_g3rac/tree/master/vaja16
  */
 public class TestCircQueue {
 	public static void main(String[] args) {

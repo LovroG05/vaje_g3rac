@@ -1,8 +1,11 @@
 /**
- * add/remove, offer/poll, dodaj/odvzemi
+ * @author Žan Piletič, Jurij Fortuna
+ * vir: https://github.com/LovroG05/vaje_g3rac/tree/master/vaja16
  */
-
 public class CircularQueue {
+	/**
+	 * add/remove, offer/poll, dodaj/odvzemi
+	 */
 	final static private int N = 10;
 	static private int[] vrsta = new int[N];
 

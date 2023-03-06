@@ -1,8 +1,8 @@
-
 /**
- * Realizacija 1. dela
+ * @author Žan Piletič, Jurij Fortuna
+ * vir: https://github.com/LovroG05/vaje_g3rac/tree/master/vaja16
  */
-public class N3 {
+public class Naloga3 {
 
 	public static void main(String[] args) {
 		CircularQueue.pokaziVrsto();

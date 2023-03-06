@@ -9,4 +9,4 @@ public class Naloga6 {
 	}
 }
 
-// Ne izpiše nič, elementi tabele so nizi, podani kot parametri
+// Izpiše "12 trinajst 4rinajst 15"; elementi tabele so nizi, podani kot parametri

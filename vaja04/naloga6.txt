@@ -1,0 +1,1 @@
+Datoteka .class ni vidna nam, na ekran izpiše "Test uspesen ....."

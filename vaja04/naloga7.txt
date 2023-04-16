@@ -1,0 +1,6 @@
+a) pri zagonski metodi manjka public
+b) ime classa mora biti isto kot ime datoteke
+c) v javi ni metode println
+d) določiti moramo tip spremenljivke i
+e) zagonska metoda mora biti statična
+f) zagonska metoda potrebuje za argument tabelo nizov (String[] args)

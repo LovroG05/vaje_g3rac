@@ -1,0 +1,2 @@
+a) Test00.class
+b) Izpiše se "Test uspesen ....."

@@ -1,0 +1,4 @@
+00_01_rac3_lav rešitve:
+
+Naloga 2:
+b) kadar a ni enako b

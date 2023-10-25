@@ -1,0 +1,226 @@
+LAV/Rac03                      Vaja 18
+                        (v0.1 draft, 13. mar. 2023)
+
+Teme:
+ : razred, objekt + lastnosti kategorij
+ : raba razredov, objektov
+ : omejitve pri rabi in značilnosti
+
+
++-------------------------------------------------------------------------------------------- 
+!
+| 18-ta vaja je sestavljena iz 5(lav) + 3(račv) nalog (Rv1-Rv3) = 8 nalog
+|
+| Dela oddate ločeno:
+!  *Oddaja prvih petih izvedete po predpisanem protokolu za oddajo LAV
+!  *Za slednje 3 poročilo o izvedeni vaji oddajte do konca ure vaj predmeta račV (3.ure v bloku na dan izvedbe) 
+!      - poročilo o izvedbi oddate učitelju predmeta RAČ!
+!      - oddajo poročila v nabiralniku naslovite z 2023_03_13_racVaja_18 in ustrezno končnico 
+!      - oddaja se evalvira po vseh pravilih za oddajo vaj z moderacijo možnega največjega dosežka glede termina oddaje
+!        (isti dan -20%, 1(naslednji),2 -dodatnih 20%, 3,4 -dodatnih 20%, potem največ do 30% osnove) 
++---
+
+
+Naloga 1
+Razred Naloga1 predstavlja točko. Spremenite glavno metodo testnega programa TestNal1 tako, da bo točka ravninska točka, 
+pozicionirana (postavljena) na pozicijo x=9 in y=7.  Predpostavka: Naloga1 in TestNal1 sta del istega paketa. 
+.. in mimogrede, program točko že izpisuje ...
+
+class Naloga1{
+
+   static int[] tocka = new int[2];
+   
+   public static void izpisiTocko(){   
+      System.out.println( "("+tocka[0]+","+tocka[1]+")"  );
+   }
+}
+
+public class TestNal1{
+
+  public static void main(String[] ards){
+     
+     Naloga1.izpisiTocko();
+  }
+    
+}
+
+Naloga 2
+Razred Naloga1 enako kot v predhodni nalogi predstavlja točko, opredeljeno z ravninskima koordinatama. TestNal1 iz 
+predhodne naloge pa bi želeli prepisati v TestNal2 in spremeniti tako, da bi poleg izpisa Naloga1 kot v predhodni nalogi 
+izpisal še tri točke, opredeljene, kot je opredeljena točka vrste Naloga1 iz predhodne naloge. Dodatne 3 točke naj leže
+na poljubnih mestih v tretjem kvadrantu.
+
+
+Naloga 3
+Razred Naloga1 iz prve naloge prepišemo v razred Naloga3 tako, da vse razredne člane prepišemo kot objektne, strukturo, 
+poimenovanje in dostopne kvalifikatorje pustimo, kot so. APlikacija TestNal3 naj bo:
+
+public class TestNal3{
+   public static void main(String[] args){
+       Naloga3 t1,t2,t3,t4;
+	   t1 = new Naloga3(); 
+	      t1.tocka[0]=7;  t1.tocka[1]=2; t1.izpisiTocko();
+	   t2=new Naloga3();
+	      t2.tocka[0]=-3;  t2.tocka[1]=-5; t2.izpisiTocko();
+   }
+}
+
+Naloga 4
+Programa iz Naloge 2 in Naloge 3 manipulirata s po 4 točkami. Spišite programa:
+  TestNal4a  //ohrani TestNal2, doda še 5 točk iz 4. kvadranta
+  TestNal4b  //ohrani TestNal3 in doda še 5 točk iz 4. kvadranta
+
+iz vsakega programa vseh 9 točk izpišite, nato vse točke premaknite za vektor(2,2) in jih ponovno izpišite.
+Pri realizaciji programa TestNal4b skušajte vseh 9 točk zapisati v tabelo točk ustrezne dolžine. Po realizacijo
+ocenite, katera od izvedb/rab bi po vašem mnenju lahko bila manj kompleksna, ter argumentirajte svojo odločitev.
+
+(
+tako kot je   int[] ti = new int[10]; in je Integer[] tint = new Integer[10]; je tudi 
+              Naloga3[] tnalog3 = new Naloga3[10]; tabela desetih 'točk' vrste Naloga3
+)
+
+
+Naloga 5
+Izvedemo test na primeru iz naloge 3 : 
+   ali gre pri t1 in t2 za isti objekt ?
+V ta namen ga izpišemo in preverimo izpis. Če je enak, gre za isti objekt.
+V preskus v nadaljevanju naredimo še prireditev t2 = t1 in ponovimo izpis.
+
+(* uporabite domišljijo (veliko) in predpostavite, da so tisto vmes med tekstom slike:
+v primeru, da sta objekta 2, bi morali ločiti:
+    t1-->objekt1
+    t2-->objekt2
+v primeru, da obe referencirata isti objekt, bi moralo biti:
+    t1-->objekt
+    t2-->objekt
+*)
+
+
+------------------------------------------------
+ Razred,objekt
+   - delo z razredom, delo z objektom razreda
+   - kdaj uporabiti razred, kdaj objekt
+------------------------------------------------
+
+Naloga Rv1
+V Naloga 3 smo uporabi razred Naloga3 kot generator objektov: razred pove, kako bo objekt zgledal, sam objekt pa
+naredimo z operatorjem new. Ker so objekti t1,t2,t3,t4 narejeni po enaki predlogi, so tipko dejansko enaki 
+(iste vrste).
+- ugotovite, ali lahko uporabite Naloga3, kot je bil uporabljen razred Naloga1 v prvi nalogi (Naloga 1):
+
+public class Rv1{
+   public static void main(String[] args){
+	   Naloga3.tocka[0]=7; Naloga3.tocka[1]=2;
+	   Naloga3.izpisiTocko();
+   }
+} 
+in odgovorite:
+a)  
+   a1) nič ni narobe, vse dela brez kakršnih koli problemov, program izpiše (7,2)
+   a2) ne morem uporabiti predstavljenega načina
+ 
+če ste predhodno izbrali a1), nadaljevanje ni potrebno, sicer pa opredelite:
+ 
+b)  
+    b1) napaka se je pojavila pri prevajanju (compile time), gre za sintaktično 'napako'
+    b2) napaka se je pojavila v postopku izvajanja (runtime), gre za algoritmično 'napako'	
+
+algoritmične napake rešujete s popravki postopka. Če ste izbrali to možnost, nadaljevanje izvajanja te naloge
+ni potrebno.
+
+c) 
+    c1) napaka pri prevajanju se je zgodila, ker manjka besedica static pri deklaraciji tabele
+    c2) napaka se je zgodila, ker manjkata kvalifikator public pri deklaraciji tabele
+    c3) napaka se je zgodila, ker v razredu Naloga3 ni razrednih članov, mi pa v naši kodi želimo neobstoječe
+        razredne člane nasloviti.
+
+
+
+Naloga Rv2
+Pri izvedbi programske aplikacije Rv2 naredimo 2 objekta vrste Rv2; prvega referencira t1, drugega t2.
+Prvo od obeh točk inicializiramo s (7,2) in izpišemo:
+public class Rv2{
+   public static void main(String[] args){
+	   Naloga1 t1,t2;
+	   t1 = new Naloga1(); t2=new Naloga1();
+	   t1.tocka[0]=7; t1.tocka[1]=2;
+	   t1.izpisiTocko();
+   }
+} 	
+ponovimo sekvenco vprašanj iz predhodne naloge:
+odgovorite:
+a)  
+   a1) nič ni narobe, vse dela brez kakršnih koli problemov, program izpiše (7,2)
+   a2) ne morem uporabiti predstavljenega načina
+ 
+če ste predhodno izbrali a1), nadaljevanje ni potrebno, sicer pa opredelite:
+ 
+b)  
+    b1) napaka se je pojavila pri prevajanju (compile time), gre za sintaktično 'napako'
+    b2) napaka se je pojavila v postopku izvajanja (runtime), gre za algoritmično 'napako'	
+
+algoritmične napake rešujete s popravki postopka. Če ste izbrali to možnost, nadaljevanje izvajanja te naloge
+ni potrebno.
+
+c) 
+    c1) napaka pri prevajanju se je zgodila, ker manjka besedica static pri deklaraciji tabele
+    c2) napaka se je zgodila, ker manjkata kvalifikator public pri deklaraciji tabele
+    c3) napaka se je zgodila, ker v razredu Naloga3 ni razrednih članov, mi pa v naši kodi želimo neobstoječe
+        razredne člane nasloviti.
+	
+
+Naloga Rv3
+
+a)
+Za vse, ki se jim v zvezi s kodo iz Rv2 ne zdi nič narobe, še 'potrditev':
+
+public class Rv3a{
+   public static void main(String[] args){         
+	   Naloga1 t1,t2;
+	   t1 = new Naloga1(); t2=new Naloga1();
+	   t1.tocka[0]=7; t1.tocka[1]=2;
+	   t1.izpisiTocko();
+	   t2.tocka[0]=-3; t2.tocka[1]=-5;         // inicializiramo še drugo točko
+	   t2.izpisiTocko();                       // in jo izpišemo
+   }
+} 
+
+izpis preko t1 izpiše (7,2) preko t2 pa (-3,-5), kot je pač pričakovano.
+
+b)
+izvedite še rahlo modificirano kodo in si oglejte vse štiri izpise. 
+public class Rv3b{
+   public static void main(String[] args){         
+	   Naloga1 t1,t2;
+	   t1 = new Naloga1(); t2=new Naloga1();
+	   t1.tocka[0]=7; t1.tocka[1]=2;
+	   t1.izpisiTocko();                   // 1. izpis
+	   t2.tocka[0]=-3; t2.tocka[1]=-5;                
+	   t2.izpisiTocko();                   // 2. izpis
+
+	     t1.izpisiTocko();                 // 3. izpis
+		 t2.izpisiTocko();                 // 4. izpis
+   }
+} 
+bi si upali razložiti pojav ? 
+
+-------------------------------------------------------------------------------------
+---------------------------------
+
+nekaj zaključkov:
+Razred imate, ko ga definirate in ga od tam naprej lahko uporabljate.
+Razred ima lahko (razredne) lastnosti in (razredne) metode opredeljene s kvalifikatorjem static, ki so dosegljive:
+   - preko imena razreda, 
+   - preko objekta, ki je tipa tega razreda  (Rv2)
+  vendar : v razredu obstaja le ena lastnost (z isto referenco) : torej vsi objekti delajo z ISTO razredno lastnostjo
+           ('laž ??', to je videti iz primera Rv3b !) 
+Objekt imate, ko ga ustvarite. Ustvarimo ga z operatorjem new in uporabo konstrukcijske metode. Vedno z new !
+(izjema so hm, : int[] x = {1,2,3,4,5,6,7,8}; String s = "nizGreBrezNew_A_res?";  :
+                 int[] x = new int[]{1,2,3,4,5,6,7,8};  String s = new String("nizGreBrezNew_A_res?");
+Z razrednimi sredstvi (metodami) ne moremo nasloviti objektne metode ali objektne lastnosti, ker ne moremo pričakovati,
+da objekt imamo (nekdo ga ni ustvaril, ali še ni ustvarjen) 
+/rabi tega se upre že prevajalnik: očitno predvidljiva napaka/
+
+rulez:
+* razredne emtode lahko naslavljajo zgolj razredne metode in razredne lastnosti
+* objektne metode lahko delajo z objektnimi in razrednimi člani

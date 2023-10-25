@@ -1,0 +1,136 @@
+LAV                          Vaja 20
+                        (v0.1 draft, 3. apr. 2023)
+
+Teme:
+ : objekti
+ : objekti, ki vsebujejo objekte
+ : strukture objektov
+ : naslavljanje v strukturirani hierarhiji objektov
+
+
+Naloga 1
+import java.awt.Color;
+/**
+ *   ravninska točka, omejena na [-100,100] od izhodišča v smereh x in y
+ *   zna podati svojo oddaljenost od koordinatnega izhodišča
+ *   zna se vizualizirati v eni izmed oblik (x,y) ali {x,y}
+ */
+class Tocka{
+    private int x,Y;  
+}
+
+Naredite razred uporaben. Delovati mora tudi tole:
+     Tocka t = new Tocka(4,5);
+	 System.out.println( t.getX() );
+	 t.setY(12);
+	 System.out.println( t.getY() );
+
+Naloga 2
+import java.awt.Color;
+/**
+ *  jo sestavljata 2 točki Točka
+ *  daljica je lahko kjerkoli v prostoru, kakorkoli orientirana,
+ *  vizualizira se kot d(t1(x,y),t2(x,y)) ali ((x,y),(x,y)) - izberite!
+ *  : zna povedati svojo dolžino
+ *  : zna se premakniti v prostoru za izbrani vektor (dx,dy)
+ */
+class Daljica{
+   private Tocka tocka1,tocka2;
+   private Color barva;
+   public String toString(){
+        return "(" + tocka1 + "," + tocka2 + ")";
+   }
+}
+
+Dopolnite do želenega;
+   test npr.:     
+      Daljica d = new Daljica( new Tocka(4,5), new Tocka(1,2) );
+	  System.out.println( d + " je dolga " + d.getDolzina() );
+	  
+Naloga 3
+import java.awt.Color;
+/**
+ *   vsebuje 3 daljice, ki ga lahko sestavijo ali pa tri daljice, dolžinsko enake 0
+ *   : se zna vizualizirati z izpisom daljic
+ *   : zna selektivno/posamezno vrniti dolžino izbrane stranice
+ */
+class Trikotnik{
+   private Daljica a,b,c;  // stranice poimenovane v skladu so konvencijami
+   private Color barva;
+}
+
+/* pseudo test:
+     Daljica d1,d2,d3
+	 Trikotnik t = new Trikotnik(d1,d2,d3); // 
+*/
+
+
+Naloga 4
+
+Program zgenerira 200 naključnih daljic in si jih zapomni. Nato zažne iz te zaloge stranic sestavljati trikotnike.
+Vsakič ko lahko iz treh sestavi trikotnik, si ga zapomni. Nobene daljice v postopku ne sme uporabiti več kot enkrat.
+Ko ne moremo več sestaviti trikotnika, postopek končamo in podamo informacijo o tem:
+- koliko trikotnikov (katere) smo sestavili in
+- koliko neuporabljenih daljic nam je ostalo
+Spišimo program tako, da z zagonom programa lahko izvedemo več takih zaporednih testov.
+
+/**
+aplikacija namenjena izvanju testov sestavljanja trikotnikov iz množice
+naključno generiranih daljic
+v osnovi lahko naredi več (zaporednih) testov
+
+pri tem sam razred/aplikacija služi le kot ovojnica za kreiranje testa
+
+vsak test zgenerira 200 daljic in si jih zapomni,nato skuša iz treh
+sestaviti trikotnik (trikotnik se sestavi glede na dolžino daljice, ne
+na njeno pozicijo v ravnini oz. orientacijo). Če sestava uspe, trikotnik
+zapišemo v tabelo trikotnikov, uporabljene daljice pa umaknemo iz tabele daljic
+
+ */
+public class Test {
+
+    Daljica[] razpoložljiveDaljice = new Daljica[200];
+    Trikotnik[] tabTrik = new Trikotnik[100];
+    private int zaporednoStevilo;
+
+    public int getZaporednoStevilo(){  // zaporedna št. testa
+       return zaporednoStevilo;
+    }
+    
+    
+    public static void main(String[] args){
+
+        int stTestov = 2;  // privzeto število testov je ...
+
+        if (args.length>0) { // ča pa z argumentom podamo drugače
+            try {
+                stTestov = Integer.parseInt(args[0]);
+                if (stTestov<=0) stTestov=1;
+            } catch(NumberFormatException e){
+                stTestov = 2;
+            }
+        }
+
+       
+        /*
+        kreiramo test z enolično zaporedno št. testa
+        kreiramo trikotnike
+        izvedemo izpis rezultatov
+        */
+       
+        for (int i=0;i<stTestov;i++){
+          Test test = new Test(i+1);
+          
+          /*
+           *   operacije za dosego cilja
+           */
+          
+          System.out.println("V testu "+test.getZaporednoStevilo()+
+                             " smo sestavili "+test.getSteviloTrikotnikov()+
+                             " trikotnikov");
+          System.out.println(" Ostalo je "+ test.getSteviloNerazporejenihDaljic() +
+                             " nerazporejenih daljic");
+        }
+        
+    }
+}

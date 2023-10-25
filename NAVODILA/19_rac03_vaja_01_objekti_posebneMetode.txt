@@ -1,0 +1,63 @@
+LAV                          Vaja 19
+                        (v0.1 draft, 27. mar. 2023)
+
+Teme:
+ : objekti
+ : posebne metode objektov: 
+    nastavljalci, vračalci, konstruktorji
+
+Naloga
+  Recimo, da na površino vržemo 'nekaj' likov; 20-30 trikotnikov,
+  30-40 pravokotnikov in 40-50 krogov, pri tem predpostavimo, da velikost
+  stranice pravokotnika ne preseže 40, enako velja tudi za radij kroga oz.
+  višino trikotnika. Seveda nobena od omenjenih ne sme biti manjša od 5.
+  Vse like (90-120) bi želeli tud izrisati. Za to bomo uporabili
+  javansko tehnologijo JavaFX. Ker pa morajo bili liki vidni, jih bomo
+  barvali z naključnimi barvami.
+  
+a) definirajte razrede Krog,Prakotnik,Trikotnik:
+   vse lastnosti v razredih naj bodo privatne, zagotovite
+   ustrezne nastavljalce in vračalce, predlagam, da ustvarite
+   tudi konstrukcijske metode.
+   
+b) generirajte ustrezno število likov, generirane shranite v tabele
+   trikotnikov, krogov, pravokotnikov
+   
+c) razvrstite posamezne tabele : liki naj se razvrstijo po naraščajoči
+   oddaljenosti od točke (0,0)
+
+d) uporabite FX objekte, kot je npr. Rectangle in zgenerirane v b)
+   izrišite
+   
+e) skreirajte tabelo elementov tipa Node 'tNode' in vanj skušajte shraniti vse
+   like, ki ste jih skreirali v nalogi d) , tiste iz FX namreč . 
+   
+   Ugotovite ali je to možno.
+   
+   in če je, za vsak element v tabeli ugotovite, kaj dejansko predstavlja:
+     for (int i=0;i<tNode.length;i++)
+	     if (  tNode[i] instanceof Krog){
+			System.out.println( "tale je krog ... " );
+			Krog nk = (Krog)tNode[i];
+			System.out.println(nk);
+		  }   
+	 /*
+     for( Node a : tNode )
+	    if (  a instanceof Krog ) {
+		  System.out.println( "tale je krog ... " );
+		  Krog nk = (Krog)a;
+		  System.out.println(nk);
+		  }
+     */
+	 
+( vsi objekti v FX so izvedeni iz Node, torej so vsi Node )
+( če ste sledili navodilo, ste verjetno opazili, da ste vsak npr. 
+  pravokotnik zgenerirali dvakrat: enkrat v z lasnim tipom, drugič
+  s FX - recimo temu namerna potrata časa in predvem prostora, ... )
+  
+-----  
+
+* najdite v razredu Rectangle, Circle , ... nastavljalce in vračalce:
+   . naštejte jih (deklaracija posamznega)
+   . naštejte tudi konstruktorje
+   . primerjate jih z lastnimi iz naloge a)

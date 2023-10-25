@@ -1,0 +1,53 @@
+LAV                          Vaja 21
+                        (v0.1 draft, 17. apr. 2023)
+
+Teme
+ : objekti
+ : objekti objektov: objekti tabela
+ : tabele tabel kot 'večrazsežna tabele'; deklaracija, inicializacija, indeksiranje, obseg tabel
+ : delo s tebelami, ki so 'pravokotne', ( polnimi, z enakimi razsežnostmi, ...)
+
+izhodišče
+						
+Čeprav iz vsakdanjika počasi v klasični obliki izgineva, je parafiranje dokumentov (žigosanje aka štempljanje, 
+podpisovanje,..) še vedno pomembna zadeva (avtorizacija, istovetnost, nespremenljivost). Današnja naloga bo 
+tako simulacija uradnika, ki mora 'štempljati' dokumente;
+
+v procesu imamo torej 2 objekta; list papirja, ki ga je potrebno poštemplajti in štempelj, ki bo ob zaključku
+odtisnjen na listu. Običajno je na listu odtisnjen en odtis, ni pa to nujno. Odtisi so v principu obarvani: barvo 
+predstavlja številka ali črka. Predspostavimo, da število 0 ali črka/znak ' ' predstavlja nepobarvanost.
+
+List in žig sta predstavljena s pravokotnima tabelama. Če je list prazen, je vsebina njegove tabele predstavljena
+z npr. števkami 0. Če je +štempelj+ kvadratne oblike velikost 3x3 in ga 'odtisnemo' na list, se na koordinati
+odtisa lista pojavi enaka vsebina, ko je v tabeli +štemplja+
+
+Žig je lahko enobarven in poln (pravokotnik samih enic), ni pa to nujno.
+
+List in žig se znata vizualizirati.
+
+Za realizacijo pričakujemo čiste objektne rešitve; nujno upoštevajte, da pri tem lahko na lastnosti objekta 
+vplivajo zolj metode objekta samega.
+Posamezen list (objekt) se naredi samo enkrat, enako velja tudi za žig.
+
+Naloga 1
+Spišite program, ki bo simuliral žigosanje listov, kot:
+   vsemi list, ki ga žigosamo
+   poglej list (če je slučajno že žigosan)
+     -- žigosanih ne bomo še enkrat žigosali
+   vzemi žig, s katerim žigosamo
+   žigosaj
+     -- pazi, da je celoten žig na odtisu
+   
+Naloga 2
+V osnovi postopek spodaj mora delovati
+Spišite program, ki bo simuliral žigosanje listov, kot:
+   vsemi list, ki ga žigosamo
+   poglej list (če je slučajno že žigosan)
+     -- žigosanih ne bomo še enkrat žigosali
+   vzemi žig, s katerim žigosamo
+   žigosaj
+samo uradnik včasih tudi zazeha, ko pritiska žig; tedaj žig ni v celoti odtisnjen na list.
+
+Naloga 3
+Uradnik ima občasno vsega dovolj in se mu pri parafiranju 'sname'. Posledica je list papirja z veliko količino ne nujno
+celotnih odtisov različnih žigov na naključnih lokacijah lista papirja.

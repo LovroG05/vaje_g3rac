@@ -1,0 +1,81 @@
+LAV                          Vaja 23
+                        (v0.1 draft, 08. maj 2023)
+
+Teme
+ : objekti
+ : nizi, tabele nizov
+ :  ustvarjanje nizov, dolžina niza, konkatenacija nizov
+ :  pretvorba niza v tabelo znakov
+ 
+ 
+1. Dana je tabela zlogov:
+
+    a) naredite niz z vsebino ABCDEFG in ga izpišite
+    b) naredite niz iz naslednje tabele zlogov
+	      byte[] ba = {65,66,67,68,69,70,71};
+	   in ga izpišite
+	c) naredite niz iz naslednje tabele zlogov in ga izpišite
+          char[] tc = {'F','U','G','L','O','V','Ž'};
+    d) enako naredite z 
+      	  byte[] b2 = {'F','U','G','L','O','V',(byte)'Ž'};
+	   (ali je tisti 'cast' v byte potreben? Zakaj ?)	  
+ 
+2. Kolikšni so dolžine dobljenih niz iz 1a,1b,1c,1d
+
+3. V nalogi 1 smo dobili 4 nize, iz vsake tabele po enega.
+   Uporabite metodi getBytes() in toCharArray() ter vsakega izmed 
+   nizov pretvorite nazaj v tabele, kot npr.:
+   iz 1a)  byte[] ba_2b = nizIzBa.getBytes();
+           char[] ba_2c = nizIzBa.toCharArray();
+   a) katere pretvorbe so možne ?
+   b) kakšna je vsebina tabele, kjer je pretvorba možna
+ 
+4. Spišite mehanizem, ki bo generiral niz želene vsebine,
+   sestavjen iz naključnih črk slovenske abecede. Prva črka
+   niza naj bo vedno veliko, ostale male.
+   
+   Slovenska abeceda, za nepoznavalce izgleda kot:
+     String abecedaV = "ABCČDEFGHIJKLMNOPRSŠTUVZŽ";
+     String abecedaM = "abcčdefghijklmnoprsštuvzž";
+   Uporabite postopke iz naloga 3 ... 
+ 
+5. Spišite postopke (metode):
+     String genNiz(4,'A');    -->AAAA
+	 String genNiz(5);        --> niz petih naključnih velikih črk
+	 String genNiz('J');    -->vrne niz naklj. dolžine [4,15] 'j'-jev
+	 
+6. Spišite
+      genPalin/0  - vrne palindrom velikih črk, dolžine 10
+	  genPalin/1  - vrne palindrom velikih črk dolžine vrednosti 
+	                argumenta (deluje tako za lihe, kot sode dolžine)
+					
+7. Spišite metodi za primerjanje nizov; niza sta 'enaka' v primerih
+   da je njuna dolžina enaka, manjši je tisti, ki je krajši, ne glede
+   na vsebino nizov. Ah da: metoda v primeru enakosti vrne 0, -1,+1
+   v ostalih dveh primerih;
+      objektna:
+       niz1.primerjaj(niz2) --> -1, če je niz1 krajši
+	  razredna 
+       primerjaj(niz1,niz2) -->  1, če je niz1 daljši	 
+ 
+8.
+Objekt Zbirka je predstavljen s tabelama
+  String[] imena,priimki;
+'imena' je zgrajen kot imena=new String[]{"Nik","Peter","Jure" }; in vsebuje
+20 različnih imen. 'priimki' je zgrajen na podoben način, le da vsebuje
+20 različnih priimkov. Pazite, da so tako imena kot priimki taki, ki jih
+pozna tudi zbirka statističnega urada Republike Slovenije.
+Metoda objekta zbirka getNakljucnoImeIzZbirke() naredi točno to, kar 
+pove njeno ime, enako naredi getNakljucenPriimekIzZbirke/0 s priimki.
+Metoda pokaziVsaImena/0 izpiše na zaslov vsa imena, razvrščena podoben
+njihovi dolžini, metoda pozaziVsaImena/0 to naredi za priimke. Metoda
+pokazi20Oseb prikaže 20 naključno zgeneriranih kombinacij ime, priimek;
+pri izpisu najprej izpiše priimek osebe, nato njeno ime.
+Metoda 'getOseba' vrne tabelo dveh nizov, v prvem je naključno ime izpisu
+imena, v drugem naključnen priimek iz priimki.
+
+a) konstruirajte razred (javanska koda)
+b) izrišite razredni diagram
+c) spišite demonstracijski program, ki bo vseboval demonstracijo klicev
+   vseh zahtevanih metod in (jasno) izpise vseh rezultatov, kjer metoda
+   pač ni taka, da bi izpisovala.

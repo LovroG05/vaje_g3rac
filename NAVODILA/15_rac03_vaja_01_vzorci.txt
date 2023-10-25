@@ -1,0 +1,158 @@
+Rac03				Vaja 15
+
+Vzorci v zaporedjih
+draft, 13.2.2023
+
+Teme:
+:iskanja, iskanje vzorcev
+:sklad, raba sklada
+:metoda drsečega okna
+
+!--------------------
+!  besedilo sestavljata 2 nalogi in 'dodananaloga' pri koncu tega dokumenta. 
+!    prvi dve nalogi oddate po pravilih za oddajanje vaj pri predmetu LAV 
+!
+! Dodana naloga pripada vajam pri predmetu RAČunalništvo in se izvedbeno zaključi in odda
+!    - do konca ure vaj predmeta račV (tretja oz. zadnja ura v bloku treh izvedbenih ur.). Odda se ločeno, poimenujte jo
+!    '2023_02_13_racVaja' z ustrezno končnico.
+!    - oddaja se evalvira po vseh pravilih za oddajo vaj z moderacijo možnega največjega dosežka glede termina oddaje
+!     (isti dan -20%, 1(naslednji),2 -dodatnih 20%, 3,4 -dodatnih 20%, potem največ do 30% osnove) 
+!    - ta del vaje obe skupini ne glede na nadzornega učitelja oddata v nabiralnik učitelju predmeta RAČ!
+!---
+
+1. Naloga
+V tabelo celih števil naključno zgeneriramo N števk; N naj bo fiksno število večje od 30 in manjše od 100.
+Na osnovi take tabele :
+   -spišite metodo, ki bo vrnila tabelo z zaporedjem elementov med elementoma z danima vrednostima (vr_zadnji vedno stoji
+     v tabeli za  vr_prvi, drugih omejitev pri izvedbi ni)
+   - metoda na zaslon izpiše vsa ali nepadajoča ali nenaraščajoča (pod)zaporedja tabele
+   - metoda preveri ali je zaporedje začetka tabele enako vsebini (zaporedju) iz druge tabele
+   - metoda preveri ali je zaporedje s konca tabele enako vsebini (zaporedju) iz druge tabele
+   - metoda preveri ali je del zaporedja tabele s pričetkom na mestu/indeksu ind enako zaporedju iz danega vzorca
+
+primer realizacije razreda z zahtevanimi metodami je dan z pseudo-javansko sintakso v
+ 
+class UtMetode {
+
+  public static int[] vrniPodZaporedje(int[] tabela, int vr_prvi, int vr_zadnji);
+  public static void izpisiZaporedja(int[] tabela, boolean padajoce);
+  public static boolean seZacneZ(int[] tabela, int[] vzorec);
+  public static boolean seKoncaZ(int[] tabela, int[] vzorec);
+  public static boolean jeVZaporedjuNa(int[] tabela, int[] vzorec, int ind);
+}
+
+spišite tudi Demo-nstarcijski razred, ki bo pokazal kako realizirane metode delujejo:
+
+public class DemoUtMetode {
+
+   public static void main(String[] args){
+      
+	  //--- test vsebovanosti
+	  System.out.println( UtMetode::jsVZapodjuNa( new int[]{1,2,3,5,7,8,9,0,1,2},
+                                                  new	int[]{5,7,8,9,0},
+                                                  3 ) );  // ....> true ?
+	  //--- test nevsebovanosti							
+	  System.out.println( UtMetode::jsVZapodjuNa( new int[]{1,2,3,5,7,8,9,0,1,2},new int[1,2],4) );  // ....> false								
+   } 
+
+}
+
+2. Naloga
+Dana je okvirna(delna,parcialna,nepopolna,preliminarna,začasna,.... ) struktura sklada:
+
+class MojSklad{
+
+   private final static int N=2000;
+   private static int[] sklad = new int[N]; 
+   
+   public boolean isEmpty(){ return true;}   // vrne true če je sklad prazen, sicer 
+   public int pop(){ return 0;}              // vrne vrednost z vrha sklada
+   public void push(int kaj){}               // potisne 'kaj' nasklad
+
+}
+
+vrednosti sklada se beležijo v interno privatno tabelo 'sklad', ki je dolžinsko omejena.
+Dopolnite strukturo s privatnima kazalcema (vsaj enim) in implementirajte zahtevane metode v skladno z 
+ustreznim delovanjemsklada. Preskusite ga.
+
+Dodajte v razredu DemoUTMetode testni klic (glavna/driver metoda?), kot:
+
+System.out.println( 
+       Arrays.toString( 
+	      UtMetode::obrniVrednosti( new int[]{1,2,3,5,7,8,9,0,1,2} )
+       )
+);    // pričakovano [2,1,0,9,8,7,5,3,2,1]
+
+obrniVrednosti lahko za obračanje uporabi zgolj sklad realiziran z razredomMojSklad!
+
+
+
+-------------------------------------------------------------------------
+/
+/  Dodana naloga 'dodananaloga'
+/
+/-------------------------------
+
+Princip drsečega okna
+  realizirana metoda jeVZaporedjuNa/3 omogoča testiranje prisotnosti vzorca v zaporedju z zaporednim preverjanjem
+  elementov iz vzorca s tistimi na odmiku ind v testiranem zaporedju:
+  
+            int o=0;
+            for ( ;o<vzorec.length && vzorec[o] == zaporedje[ind+o] ; o++)
+            if (o == vzorec.length)
+			   ..... ok
+			  else
+			    .... ni ok
+
+
+                           okno			
+			        -------   
+			1 1 3 4 2 7 1 2 1 8 9 0      : zaporedje
+			        2 7 1 2              : vzorec
+			        -------
+			        ^
+				  |
+				 ind
+	
+  recimo, da vzorec sicer v zaporedju JE vendar mogoče ne ravno na mestu ind. Vprašanji, ki se zastavljata sta:
+  - ali se tak vzorec nahaja kjerkoli v zaporedju
+  - če se nahaja, kje na kateri poziciji se nahaja (prva, zadnja pojavitev) vzorca
+  
+  *=> v zaporedju 'ind' z dolžino vzorca predstavlja 'okno' v katerem vsebino preverjamo; ind določa začetek oz.
+      pozicijo, velikost vzorca pa dimenzijo/dolžino 'okna'.
+   => za odgovor na zgornji vprašanji je dovolj, da izvedemo preverjanje na zaporedju z vsemi možnimi izhodiščnimi
+      pozicijami (okna) za 'ind'
+   => pri sistematičnem postopku pričnemo s prvo/najmanjšo(?) vrednostjo za 'ind' in jo povečujemo proti zadnji
+      vrednosti glede na izvajanje postopka:
+	    - če opazujemo, kaj se dogaja z 'oknom' imamo občutek, da drsi od začetka proti koncu zaporedja:
+		
+	       postopek DRSEČEGA OKNA oz. ''sliding window''
+				   
+
+Spišite demonstracijo delovanja postopka iskanja z drsečim oknom z realizacijo s predhodnimi primeri še nerealiziranih
+metod razreda UtMetode. Argumenta pri obeh metodah sta zaporedje in vzorec.
+	
+--------------------------------------------------	
+UtMetode                                          I
+--------------------------------------------------
+                                                  I
+--------------------------------------------------
+  +vrniPodZaporedje(int[], int , int ): int[]     I
+  +izpisiZaporedja(int[] , boolean ) : void       I
+  +seZacneZ(int[] , int[] ) : boolean             I
+  +seKoncaZ(int[], int[] )  : boolean             I
+  +jeVZaporedjuNa(int[] , int[] , int) : boolean  I
+  +obrniVrednosti(int[]) : int[]                  I
+  +jeVzaporedju( int[] , int[]) : boolean         I
+  +kjeJeVzaporedju( int[] , int[]) : int          I
+--------------------------------------------------				   
+
+(tole zgoraj je v besedilni obliki 'izrisan' diagram s strukturo razreda. Imenujemo ga razredni diagram. Tri sekcije ga
+ opisujejo : v zgornji je ime razreda(tipa), pod njo je sekcija z lastnostmi (pri nas je prazna), sledi sekcija z metodami.
+ +pred elementompove, da gre za javnega člana, imena so točna, vse ostalo je podano v odvisnosti od tega, koliko podrobnosti
+ popisujete; v zgorjem primeru je vrsta, število argumentov in tip vrnjene vrednosti, pa še v javanski sintaksi.
+ 
+ razredni diagram in njegov opis v splošnem nista vezana na tehnologijo/sredstva/področje rabe; na specialnih področjih 
+ pač razširimo nivo prikaza podrobnosti
+ 
+ )

@@ -1,0 +1,80 @@
+13_rac03_vaja_01
+
+Vaja 13
+  (draft, jan.2023)
+  
+- tabele 
+- razred Arrays in priročne (utility) metode tega razreda
+
+Opomba: postopka binarnega in zaporednega iskanja sta bila spisana
+        na predhodnih urah predmeta Računalništvo, prav tako so bili
+		spisani postopki razvrščanja s premenami. 
+
+1. Zaporedje 1,2,4,6,8,9,12,15,16,19,21 je predstavljeno s
+   števili zapisanimi z vrsto Integer.
+   Predpostavimo, da v zaporedju iščemo vrednost 10. Spišite razredni
+   metodi, ki bosta ugotovili in vrnili, koliko primerjav potrebujemo
+   za iskanje želene vrednosti:
+     a) pri zaporednem iskanju
+     b) pri dvojiškem iskanju
+   Za skodirano metodo spišite za gornji dani primer tudi sled(enje)
+   izvajanja in pokažite/dokažite ustreznost implementacije spianih
+   postopkov.
+   
+2. Razred java.util.Arrays vsebuje kup metod, ki včasih pridejo prav pri delu 
+   s tabelami; med njima je tudi metoda sort/1 :
+      int[]t=new int[]{1,2,3,5,1,7,8,9}; 
+	  System.out.println( Arrays.toString(t) );	 
+	  sort(t); 
+      System.out.println( Arrays.toString(t) );	  
+   
+   - Ugotovite, kako deluje metoda equals/2 na zaporedjih celih števil.
+   ( ugotovitev je posledica dokaznega postopka s potrditvijo ali
+     zavrnitvijo 'teze - podane z opisom funkcije'   )
+   - Spišite lastno metodo enakiTab/2, ki bo vrnila True v primeru, da
+   sta podani tabeli 'enaki' in false v nasprotnem. Tabeli sta vedno
+   tabeliistovrstnih primitivov int, char ali double.
+   Zahtevan implementitan postopek enakosti opišemo: 
+   tabeli sta enaki v primeru, da je njuna dolžina enaka in sta
+   sestavljeni iz istih elementov.
+   ( isti elementi: enako urejeno zaporedje)
+   
+3. Ocene kompleksnosti/zahtevnosti/časovnosti osnovnih postopkov
+   iskanj bi želeli preveriti 'avtomatizirano'. Natančno štetje
+   števila primerjav za posamezen postopek bi izvedli 1000x in 
+   rezultat vsakega posameznega izvajanja zabeležili v tabelo izvajanj.
+   Po končanem poskušanju bi v tabeli poiskali najmanjšo vrednost,
+   največjo vrednost in izračunali povprečno. Vse tri bi izpisali in 
+   ocenili skladnost z izračunanimi ocenami.
+   (zaporedje lahko poljubno podaljšate/generirate, glejte samo, da
+    boste teste izvedli pod enakimi pogoji; recimo na istem zaporedju)
+
+/* rešitve spodnjih nalog naj ne vsebujejo rabe priročnih metod
+   razreda java.util.Arrays. Naj bod vse del istega razreda,
+   npr. Naloge4do8
+   Lahko pa taki rešitvi dodate alternativno rešitev z uporabo
+   priročnih metod.
+*/
+	
+4. Razredna metoda seZacneZ/2 preveri, če je zaporedje, dano z
+   drugim argumentom, začetek zaporedja, danega s prvim. (metoda vrne
+   rezultat preverjanja, [1,2,6] začenja [1,2,6,3,5,6,7,9,1,3])
+   
+5. Razredna metoda seKoncaZ/2 preveri, če je zaporedje, dano z
+   drugim argumentom, konec zaporedja, danega s prvim. (metoda vrne
+   rezultat preverjanja)
+   
+6. Predpostavite, da vsebina številske tabele posredovane razredni
+   metodi dolz/1 predstavlja vektor dolžine ustrezne podani tabeli.
+   Tabela vrne dolžino tako podanega vektorja.
+   
+7. Metoda spl/2 razbije zaporedje vrednosti posredovane tabele v
+   ustrezno število zaporedij dolžine N, ki je vrednost drugega 
+   argumenta. Vrednost pri razbijanju se ne shranjujejo, temveč
+   zgolj izpisujejo na zaslon, vsako določeno/dobljeno zaporedje
+   v lastno vrstico.
+
+8. Metoda spl/1 razbije zaporedje vrednosti posredovane tabele v
+   ustrezno število nepadajoče urejenih zaporedij, tako, da se
+   tako urejeno podzaporedje osnovnega zaporedja vedno izpiše v
+   lastno vrstico.

@@ -1,0 +1,62 @@
+12_rac03_vaja_01
+
+Vaja 12
+  (draft, jan.2023)
+  
+- tabele primitivov - utrjevanje
+- (metode, argumenti, vračanje vrednosti)
+
+... tip vsebine tabel ni poznan, niti ni bistven za realizacijo
+... postopka
+..... realizacije testirajte, testna koda (reprezentativna) naj
+...... bo del realizacije
+....... z besedili je podan en način opisa postopka. Naloge od vas
+    .... zahtevajo še en ali dva drugačna opisa: kodo v javanskem
+	.      programskem jeziku in kjer je navedeno še diagram poteka.
+	  .... Lotite se.
+
+1. metoda vrne N-to podzaporedje dolžine M iz dane tabele.
+   (iz besedila identificirano : vrniNtoPodzaporedjeDolzineM, N, M, table
+     vrne zaporedje kot tabelo)
+	 
+2. Recimo, da zaporedje zapisano v tabeli barvamo s štirimi barvami
+   tako, da prvi odsek dolžine M pobarvamo z barvo B1, drugega enake 
+   dolžine z barvo B2, tretjega z barvo B3 in četrtega z B4, petega
+   spet z barvo B1, ... in tako do konca zaporedja tabele. Metoda
+   vrne pobarvano zaporedje. Skodirajte metodo in izrišite 
+   diagram poteka za dani postopek.
+   
+   varianta:
+     odsek dolžine M barvamo z 'barvo', ki je enaka največji
+	 'vrednosti' elementa v tem odseku. npr.:
+	     afgijkoadrhietqwr,4  --> iiiioooorrrrwwwwr
+   
+3. metoda obrniZaporedjeVDaniTabeli naredi točno to. Spišite
+   lasten postopke za obračanje (v realizaciji naj bo vidna
+   linearna zahtevnost postopka). Dodajte celotno opredelitev 
+   ugotovitve natančnega števila korakov, potrebnih za obrat.
+   
+4. metoda obrniPodzaporedjeVDaniTabeli obrne vrstni red elementov
+   podzaporedja celotne zaporedja tabele. Podzaporedje je
+   podano z svojima mejama. Postope naj bo trpežen. Poleg realizacije
+   izrišite še diagram poteka postopka.
+   
+5. Dani sta tabeli števk poljubnih dolžin do dolžine 123456 elementov.
+   Predpostavite, da tabela {1,2,3,3,6,9} predstavlja celo število z
+   vrednostjo 123369
+   Spišite mehanizme:
+     ( byte[] rezultat = ) vsota(tabela1,tabela2)    //t1+t2
+	                       razlika(tabela1,tabela2)  //t1-t2
+						   produkt(tabela1,tabela2)
+						   
+	  (void)  prikaziStevilo(tabela1)
+						   
+6. Numerično zaporedje v tabeli predstavlja 10 serij strelov tekmovalca
+   v tarčo. Vrednost vsakega strela je lahko iz [0,11], serija je
+   dolžine 10 strelov. Rezultat metode dolociPovprecjeSerij je tabela
+   s povprečno vrednostjo strela v vsaki izmed serij. Metoda jasno
+   zaporedje povprečij vrne.   
+
+7. Metoda static void razdeli(t1,krit,tr1,tr2); vsebinsko numerično 
+   tabelo t1 razcepi glede na vrednost kriterij krit tako, da so v 
+   tr1 vrednosti <= krit in v tr2 ostale vrednosti. Spišite jo.

@@ -1,0 +1,134 @@
+LAV/Rac03                      Vaja 16
+                        (draft, 27. feb. 2023)
+
+Teme:
+ : linearne vrste
+ : (naivne) izvedbe prioritetnih linearnih vrst
+ : krožne vrste
+
+Linearna vrsta in ocena njenega delovanja sta bili obrazloženi v okviru podajanja teoretičnih vsebin pri
+predmetu Računalništvo (03). Za realizacijo spodnjih nalog lahko v pomoč uporabite tam podane realizacije. 
+Kot morebiten vir dodatnih idej, je v spremljajoči datoteki k tej vaji dana še delna/nepopolna realizacija 
+krožne vrste skupaj z dodano izvedbo demonstracije delovanja. 
+
+!--------------------
+!  besedilo sestavljata 2 nalogi in tretja(dodana) pri koncu tega dokumenta. 
+!    prvi dve nalogi oddate po pravilih za oddajanje vaj pri predmetu LAV 
+!
+! Dodana naloga pripada vajam pri predmetu RAČunalništvo in se izvedbeno zaključi in odda
+!    - do konca ure vaj predmeta račV (tretja oz. zadnja ura v bloku treh izvedbenih ur.). Odda se ločeno, poimenujte jo
+!    '2023_02_27_racVaja' z ustrezno končnico.
+!    - oddaja se evalvira po vseh pravilih za oddajo vaj z moderacijo možnega največjega dosežka glede termina oddaje
+!     (isti dan -20%, 1(naslednji),2 -dodatnih 20%, 3,4 -dodatnih 20%, potem največ do 30% osnove) 
+!    - ta del vaje obe skupini ne glede na nadzornega učitelja oddata v nabiralnik učitelju predmeta RAČ!
+!---
+
+1. Realizirajte linearno prioritetno vrsto za sistem, kjer imate dve vrsti elementov: prioritetne in 
+   neprioritetne. Značilno za izvajanje je, da vsak prioritetni element na vrsto za odvzem pride pred
+   katerimkoli neprioritetnim v vrsti.
+   
+   Navodilo/ideja:
+   realiziramo z dvema zaporedjema /tabelama/ {prioriteno(P), ne_prioritetno(NP)}. Pri jemanju jemljemo iz glave
+   prioritetne, dokler je tam kaj, nato iz neprioritetne. Pri dodajanju elementa v vrsto je potrebno podati še 
+   prioriteto, da vemo v katero vrsto ga dodati. Recimo:
+   
+                G      R
+                5,6,7,8          (P)
+                4,1,6            (NP)	
+                G    R
+				
+		dodaj(6,true); dodaj(1,false); dodaj(13,false)	
+
+                G        R
+                5,6,7,8,6          (P)
+                4,1,6,1,13	       (NP)	
+                G         R	
+				
+		če sedaj vrsto spraznemo(zaporedje jemanj iz vrste), je zaporedje praznjenja:
+                 5,6,7,8,6,4,1,6,1,13		
+				 
+    kot primer jemanja torej lahko uporabimo:
+		
+	   če ni prazna(prioritetna/P/)
+	      odvzemiIzPrioritetne
+		sicer
+		  če ni prazna(neprioritetna/NP/)
+		    odvzemiIzNeprioritetne
+				 
+	pri dodajanju se lahko odločite, da prioritetnega elementa ne dodate v vrsto, če je prioritetna polna
+    tudi v primeru, da je v neprioritetni še prostor..	
+	
+2. Naloga*
+    Prioritetna linearna vrsta z poljubno prioriteto:
+		
+	 - vsak element se v vrsto dodaja z dvema podatkoma : z vrednostjo in s prioriteto.
+	 - uporabimo 2 tabeli, v prvi je na indeksu 'i' zapisana vrednost elementa, v drugi je na indeksu 'i'
+		                   zapisana prioriteta elementa
+	 - pri jemanju iz vrste se iz vrste vzame vedno tisti element, ki ima v vrsti v danem trenutku najvišjo
+	   prioriteto
+	   
+	 (
+	   pri realizaciji poljubno uprorabite eno od variant: 
+	   * vrsto realiziramo kot urejen seznam s padajoče prioriteto od glave proti repu
+	      ... potrebno vzdrževati po padajočih prioritetah urejen seznam - kot pri postopku
+		      razvrščanja z vstavljanjem : ko element pride v vrsto, ga vstavimo na 'pravilno'
+			  mesto v vrsto
+	   * element dodajamo na konec vrste, pri vsakokratnem jemanju elementa iz vrste izvedemo iskanje elementa
+  	     z največjo prioriteto in ga vrnemo
+	 )
+	 Realizirajte eno od navedenih inačic take prioritetne vrste; predpostavite, da je prioriteta lahko
+	 nekaj iz [1..100]. Spišite demonstracijo delovanja spisane realizacije.
+	
+
+3. Naloga
+     Krožna vrsta s stražarjem je definirana v razredu CircularQueue kot
+	
+     +------------------------+
+     | CircularQueue          |
+     +------------------------+
+     | -N : int               |
+     | -vrsta : 1..N          |
+     | -rep : int             |
+     | -glava : int           |
+     +------------------------+
+     | +dodaj/1               |
+     | +odvzemi/0             |
+     | +jePrazna/0            |
+     | +jePolna/0             |
+     | +pokaziVrsto/0         |
+     | +pokaziTabeloZVrsto/0  |
+     +------------------------+
+  
+Realizirajte jo !	
+  
+... in spišite aplikacijo TestCircQueue, ki bo vrsto uporabila, in izvedla demonstracijo delovanja metod (recimo:
+100 ciklov generiranja naključnih celih števil [1..100], če je št. večje od 80 iz vrste odvzamemo element,
+sicer v vrsto dodamo element z vrednostjo trenutne številke cikla. Nato izvedemo N+1 krat jemanje elementa iz vrste.
+Jasno, vsakič izpišemo stanje vrste.
+- pokaziVrsto/0 izpiše vrsto /zaporedje vrednosti elementov od glava do rep/
+- pokaziTabeloZVrsto je opisana pod c)
+Pazite: metode vedno izvajajte pogojene (glej a) in b).
+ 	  
+a)
+če ni polna
+  dodaj element
+ sicer izpiši, da je polna in dodajanje ni mogoče 
+  
+b)  
+če ni prazna
+    odvzemi elementi
+ sicer izpiši da jemanje iz vrste ni mogoče, ker pač ni elementov 
+ 
+c)
+pokaziTabeloZVrsto()  :
+
+izriše celotno tabelo, ki vsebuje vrsto z označenima pozicijama glave in repa vrste:
+    recimo pri tabeli dolžine 16 števk je primer izrisa:
+	
+                            1241398734563455
+                               R          G
+											   
+	(vrsta se raztega od glave do repa, R in G se gibljeta v korakih G+1 in R+1 (smer CW) , tabela se prične 
+	 indeksirati na levi strani: vsebina vrste je potemtakem 5,5,1,2,4	)
+
+
